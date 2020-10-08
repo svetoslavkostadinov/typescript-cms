@@ -1,0 +1,63 @@
+version: '3.1'
+
+networks:
+  tsnet:
+
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: api
+    depends_on:
+      - mysql
+    volumes:
+      - ./api:/usr/src/app
+    ports:
+      - 4000:4000
+    networks:
+      - tsnet
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: client
+    depends_on:
+      - api
+    volumes:
+      - ./client:/usr/src/app
+    ports:
+      - 1234:1234
+    networks:
+      - tsnet
+
+  mysql:
+    image: mysql:5.7.31
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: dbtscms
+      MYSQL_USER: tscms
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - tsnet
+
+#  db:
+#    image: mongo:3.7.9
+#    container_name: db
+#    restart: unless-stopped
+#    volumes:
+#      - ./data:/data/db
+#    ports:
+#      - 27017:27017
+#    networks:
+#      - tsnet

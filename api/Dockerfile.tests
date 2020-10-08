@@ -1,0 +1,10 @@
+FROM api
+
+WORKDIR /usr/src/app
+
+COPY src/tests tests
+ENV NODE_ENV dev
+
+RUN npm update
+
+CMD [ "npm", "run", "test" ]

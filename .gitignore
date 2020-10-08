@@ -1,0 +1,10 @@
+# database
+data/
+mysql/
+
+# ignore the node library folders
+api/node_modules/
+client/node_modules/
+
+# ignore the production builds
+api/prod/
