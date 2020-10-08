@@ -8,3 +8,5 @@ client/node_modules/
 
 # ignore the production builds
 api/prod/
+
+.idea/
