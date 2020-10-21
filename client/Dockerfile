@@ -1,12 +1,19 @@
 FROM node:12.18.4
 
-WORKDIR /usr/src/app
+# set working directory
+WORKDIR /app
 
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+
+# install app dependencies
+COPY package.json ./
+
+RUN npm install --silent
+RUN npm install react-scripts -g --silent
+
+# add app
 COPY . .
 
-#RUN npm
-
-EXPOSE 1234
-
-CMD ["yarn", "start"]
-#CMD ["npm", "start"]
+# start app
+CMD ["npm", "start"]
