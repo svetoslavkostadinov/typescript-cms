@@ -23,10 +23,6 @@ export default class UserController {
     res.send(users);
   };
 
-  static login = async (req: Request, res: Response) => {
-
-  };
-
   // static getOneById = async (req: Request, res: Response) => {
   //     //Get the ID from the url
   //     const id: number = Number(req.params.id);
@@ -136,8 +132,8 @@ export default class UserController {
   static reset = UsersPasswordController.reset;
   // Users Authentication
   static register = UsersAuthenticationController.register;
-  static signIn = UsersAuthenticationController.signIn;
-  static signOut = UsersAuthenticationController.signOut;
+  static login = UsersAuthenticationController.login;
+  static signOut = UsersAuthenticationController.logout;
   // Users Profile
   static me = UsersProfileController.me;
   static update = UsersProfileController.update;

@@ -12,7 +12,7 @@ export class AuthRoutes {
 
     // Setting up the users authentication api
     app.route('/api/auth/register').post(UserController.register);
-    app.route('/api/auth/sign-in').post(UserController.signIn);
+    // app.route('/api/auth/login').post(UserController.login);
     app.route('/api/auth/sign-out').get(UserController.signOut);
 
   }

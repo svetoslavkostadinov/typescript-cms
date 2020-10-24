@@ -26,8 +26,7 @@ export class AdminRoutes {
     //     .get(AdminController.list);
     // .get([checkJwt, checkRole(["ADMIN"])], AdminController.list);
 
-    app.route('/api/login')
-      .get([checkJwt], UserController.login);
+    app.route('/api/login').get(UserController.login);
 
     // Single user routes
     app.route('/api/users/:userId')
